@@ -10,9 +10,9 @@ inputs:
     required: true
 outputs:
   docker-test:
-    value: ${{ steps.docker-action.outputs.docker-test }}
+    value: ${{ steps.docker-action.outputs.time }}
   js-test:
-    value: ${{ steps.js-action.outputs.js-test }}
+    value: ${{ steps.js-action.outputs.time }}
 
 runs:
   using: "composite"
