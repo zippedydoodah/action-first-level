@@ -1,0 +1,30 @@
+uses: zippedydoodah/action-nested
+with:
+  who-to-greet: 'Mr Joe'
+
+
+name: First Level
+
+on:
+  pull_request:
+    types: ['opened', 'edited', 'reopened', 'synchronize']
+
+jobs:
+  action-nested:
+    name: Run nested action
+    runs-on: ubuntu-latest
+    steps:
+      # checkout this repo
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+      # checkout the private repo containing the action to run
+      - name: Checkout GitHub Action Repo
+        uses: actions/checkout@v2
+        with:
+          repository: zippedydoodah/action-nested
+          token: ${{ secrets.GIT_HUB_TOKEN }} # stored in GitHub secrets
+          path: .github/actions/my-action
+      - name: Run My Action
+        uses: ./.github/actions/action-nested
+        with:
+          who-to-greet: 'Mr Joe'
