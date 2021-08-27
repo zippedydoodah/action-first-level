@@ -8,6 +8,9 @@ inputs:
   who-to-greet-js:
     description: “Joe aswell!”
     required: true
+outputs:
+  docker-test: "${{ steps.docker-action.outputs.docker-test }}"
+  js-test: "${{ steps.js-action.outputs.js-test }}"
 
 runs:
   using: "composite"
@@ -24,7 +27,7 @@ runs:
       path: ci/action-simple-js
 
   - name: Simple JS action step
-    id: hello
+    id: js-action
     uses: ./ci/action-simple-js
     with:
       who-to-greet: "${{ inputs.who-to-greet-js }}"
@@ -42,7 +45,7 @@ runs:
       path: ci/action-nested
 
   - name: Run nested docker action
-    id: action-nested
+    id: docker-action
     uses: ./ci/action-nested
     with:
       who-to-greet: "${{ inputs.who-to-greet-docker }}"
