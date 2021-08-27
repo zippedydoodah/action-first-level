@@ -1,6 +1,10 @@
-name: First Level
+name: "Composite togetyher"
+description: "Testing composite run - pass into nested"
 
-on: push
+inputs:
+  who-to-greet:
+    description: “test hello world thingy”
+    required: true
 
 runs:
   using: "composite"
@@ -20,4 +24,4 @@ runs:
     id: action-nested
     uses: ./ci/action-nested
     with:
-      who-to-greet: "mr Joe"
+      who-to-greet: "${{ inputs.who-to-greet }}"
