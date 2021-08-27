@@ -10,6 +10,8 @@ jobs:
       # checkout this repo
       - name: Checkout Repo
         uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GIT_HUB_TOKEN }} # stored in GitHub secrets
 
       # checkout the private repo containing the action to run
       - name: Checkout GitHub Action Repo
