@@ -28,9 +28,11 @@ runs:
     uses: ./ci/action-simple-js
     with:
       who-to-greet: "${{ inputs.who-to-greet-js }}"
-  # Use the output from the nested `hello` step
-  - name: Get the output time WITHIN COMPOSITE
-    run: echo "The time was ${{ steps.hello.outputs.time }}"
+
+  # DOESNT WORK HERE
+  # # Use the output from the nested `hello` step
+  # - name: Get the output time WITHIN COMPOSITE
+  #   run: echo "The time was ${{ steps.hello.outputs.time }}"
 
   # checkout the private repo containing the action to run
   - name: Checkout action-nested
