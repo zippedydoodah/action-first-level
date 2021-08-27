@@ -18,7 +18,7 @@ jobs:
           repository: zippedydoodah/action-nested
           path: ci
       - name: debug
-        run: ls ./ci/action-nested
+        run: ls ./ci/
       - name: Nested action
         id: action-nested
         uses: ./ci/action-nested
