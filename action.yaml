@@ -30,8 +30,6 @@ runs:
         push: true
         tags: action-first-level/test-image:latest
 
-  - name: Build docker image here
-
 
   - name: Run nested docker action
     id: action-nested
