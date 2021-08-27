@@ -5,9 +5,7 @@ with:
 
 name: First Level
 
-on:
-  pull_request:
-    types: ['opened', 'edited', 'reopened', 'synchronize']
+on: push
 
 jobs:
   action-nested:
