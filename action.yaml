@@ -2,8 +2,11 @@ name: "Composite togetyher"
 description: "Testing composite run - pass into nested"
 
 inputs:
-  who-to-greet:
+  who-to-greet-docker:
     description: “test hello world thingy”
+    required: true
+  who-to-greet-js:
+    description: “Joe aswell!”
     required: true
 
 runs:
@@ -14,23 +17,30 @@ runs:
     uses: actions/checkout@v2.3.4
 
   # checkout the private repo containing the action to run
-  - name: Checkout GitHub Action Repo
+  - name: Checkout simple js
+    uses: actions/checkout@v2.3.4
+    with:
+      repository: zippedydoodah/action-simple-js
+      path: ci/action-simple-js
+
+  - name: Simple JS action step
+    id: hello
+    uses: ./ci/action-simple-js
+    with:
+      who-to-greet: "${{ inputs.who-to-greet-js }}"
+  # Use the output from the nested `hello` step
+  - name: Get the output time WITHIN COMPOSITE
+    run: echo "The time was ${{ steps.hello.outputs.time }}"
+
+  # checkout the private repo containing the action to run
+  - name: Checkout action-nested
     uses: actions/checkout@v2.3.4
     with:
       repository: zippedydoodah/action-nested
       path: ci/action-nested
 
-  - name: build and push docker image to local repo
-    id: docker_build
-    uses: docker/build-push-action@v2
-    with:
-      context: .
-      push: true
-      tags: action-first-level/test-image:latest
-
-
   - name: Run nested docker action
     id: action-nested
     uses: ./ci/action-nested
     with:
-      who-to-greet: "${{ inputs.who-to-greet }}"
+      who-to-greet: "${{ inputs.who-to-greet-docker }}"
