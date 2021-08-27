@@ -40,14 +40,14 @@ runs:
   #   run: echo "The time was ${{ steps.hello.outputs.time }}"
 
   # checkout the private repo containing the action to run
-  - name: Checkout action-nested
+  - name: Checkout action-simple-docker
     uses: actions/checkout@v2.3.4
     with:
-      repository: zippedydoodah/action-nested
-      path: ci/action-nested
+      repository: zippedydoodah/action-simple-docker
+      path: ci/action-simple-docker
 
   - name: Run nested docker action
     id: docker-action
-    uses: ./ci/action-nested
+    uses: ./ci/action-simple-docker
     with:
       who-to-greet: "${{ inputs.who-to-greet-docker }}"
