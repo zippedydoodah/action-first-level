@@ -9,8 +9,10 @@ inputs:
     description: “Joe aswell!”
     required: true
 outputs:
-  docker-test: "boop"
-  js-test: "beep"
+  docker-test:
+    value: ${{ steps.docker-action.outputs.docker-test }}
+  js-test:
+    value: ${{ steps.js-action.outputs.js-test }}
 
 runs:
   using: "composite"
