@@ -9,11 +9,11 @@ jobs:
     steps:
       # checkout this repo
       - name: Checkout Repo
-        uses: actions/checkout@@v2.3.4
+        uses: actions/checkout@v2.3.4
 
       # checkout the private repo containing the action to run
       - name: Checkout GitHub Action Repo
-        uses: actions/checkout@@v2.3.4
+        uses: actions/checkout@v2.3.4
         with:
           repository: zippedydoodah/action-nested
           path: ci
