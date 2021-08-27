@@ -15,14 +15,17 @@ jobs:
       # checkout this repo
       - name: Checkout Repo
         uses: actions/checkout@v2
+
       # checkout the private repo containing the action to run
       - name: Checkout GitHub Action Repo
         uses: actions/checkout@v2
         with:
           repository: zippedydoodah/action-nested
           token: ${{ secrets.GIT_HUB_TOKEN }} # stored in GitHub secrets
-          path: .github/actions/my-action
-      - name: Run My Action
-        uses: ./.github/actions/action-nested
+          path: ci
+
+      - name: Nested action
+        id: action-nested
+        uses: ./ci/action-nested
         with:
-          who-to-greet: 'Mr Joe'
+          who-to-greet: "mr Joe"
