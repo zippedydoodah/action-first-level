@@ -11,14 +11,14 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v2
         with:
-          token: ${{ secrets.GIT_HUB_TOKEN }} # stored in GitHub secrets
+          token: ${{ secrets.GITHUB_TOKEN }} # stored in GitHub secrets
 
       # checkout the private repo containing the action to run
       - name: Checkout GitHub Action Repo
         uses: actions/checkout@v2
         with:
           repository: zippedydoodah/action-nested
-          token: ${{ secrets.GIT_HUB_TOKEN }} # stored in GitHub secrets
+          token: ${{ secrets.GITHUB_TOKEN }} # stored in GitHub secrets
           path: ci
 
       - name: Nested action
